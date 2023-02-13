@@ -29,6 +29,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
 import { HakaksesComponent } from './components/hakakses/hakakses.component';
+import { registerLocaleData } from '@angular/common';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -58,7 +60,9 @@ import { HakaksesComponent } from './components/hakakses/hakakses.component';
                     {path: 'pages/empty', component: EmptyComponent},
                     {path: 'icons', component: IconsComponent},
                     {path: 'blocks', component: BlocksComponent},
-                    {path: 'documentation', component: DocumentationComponent}
+                    {path: 'documentation', component: DocumentationComponent},
+                    {path: 'login', component: LoginComponent},
+                    {path: 'register', component: RegisterComponent}
                 ],
             },
             {path:'pages/landing', component: LandingComponent},

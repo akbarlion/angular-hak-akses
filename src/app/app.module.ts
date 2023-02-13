@@ -141,6 +141,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
 import { HakaksesComponent } from './components/hakakses/hakakses.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
     imports: [
@@ -275,6 +276,7 @@ import { HakaksesComponent } from './components/hakakses/hakakses.component';
         NotfoundComponent,
         AccessComponent,
         HakaksesComponent,
+        RegisterComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
