@@ -1,0 +1,69 @@
+<div class="grid">
+
+	<div class="col-6">
+		<div class="card p-fluid">
+			<h5>Form Pengajuan Hak Akses</h5>
+			<div class="field">
+				<label htmlFor="name1">Nama</label>
+				<input pInputText id="nama1" type="text" [(ngModel)]="namapeg"/>
+			</div>
+            <div class="field">
+                <label htmlFor="nip1">NIP</label>
+                <input pInputText id="nip1" type="number" [(ngModel)]="nip"/>
+            </div>
+            <div class="field">
+                <label htmlFor="noktp1">Nomor KTP</label>
+                <input pInputText id="noktp1" type="number"[(ngModel)]="ktp" />
+            </div>
+            <div class="field">
+                <label htmlFor="divisi1">Divisi</label>
+                <p-dropdown [options]="dropdownDiv" optionLabel="name" [(ngModel)]="selectedDivisi" [(ngModel)]="divisi" placeholder="Pilih Divisi Anda"></p-dropdown>
+            </div>
+            <div class="field">
+                <label htmlFor="nohp1">Nomor Hp</label>
+                <input pInputText id="nohp1" type="number" [(ngModel)]="hp"/>
+            </div>
+            <div class="field">
+                <label htmlFor="cabang1">Cabang Penempatan</label>
+                <p-dropdown [options]="dropdownCab" optionLabel="name" [(ngModel)]="selectedCabang" [(ngModel)]="cab" placeholder="Cabang Penempatan"></p-dropdown>
+            </div>
+            <div class="field">
+                <label htmlFor="emailkoor">Email Koordinator</label>
+                <input pInputText id="emailkoor" type="text" [(ngModel)]="koor"/>
+            </div>
+            <div class="field">
+                <label htmlFor="emailkacab">Email Kepala Cabang</label>
+                <input pInputText id="emailkacab" type="text" [(ngModel)]="kacab"/>
+            </div><br> 
+            <div class="col-12">
+                <div class="field-checkbox col-12">
+                    <p-checkbox value="Saya sebagai pemohon menyatakan bahwa semua data yang telah saya berikan di atas adalah benar dan bertanggungjawab penuh atas penggunaannya serta menyetujui ketentuan lain yang berlaku dalam penggunaan sistem informasi di PT CITO PUTRA UTAMA." id="ch"></p-checkbox>
+                    <label for="ch">Saya sebagai pemohon menyatakan bahwa semua data yang telah saya berikan di atas adalah benar dan bertanggungjawab penuh atas penggunaannya serta menyetujui ketentuan lain yang berlaku dalam penggunaan sistem informasi di PT CITO PUTRA UTAMA.</label>
+                </div>
+                <p-button label="Submit2" (click)="showModalDialog()" (click)="submit(namapeg,nip,ktp,hp,koor,kacab,selectedDivisi,selectedCabang)"></p-button>
+                <p-dialog header="Data Karyawan" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}">
+                    <div></div>
+                        <b style="font-size: 12pt; ">• Nama Karyawan: </b>
+                            <p>{{nama_pegawai}}</p>
+                        <b style="font-size: 12pt; ">• NIP: </b>
+                        <p>{{nomor_induk}}</p>
+                        <b style="font-size: 12pt; ">• Nomor KTP: </b>
+                        <p>{{nomor_ktp}}</p>
+                        <b style="font-size: 12pt; ">• Divisi: </b>
+                        <p>{{div.name}}</p>
+                        <b style="font-size: 12pt; ">• Nomor HP: </b>
+                        <p>{{no_hp}}</p>
+                        <b style="font-size: 12pt; ">• Cabang Penempatan: </b>
+                        <p>{{cabang.name}}</p>
+                        <b style="font-size: 12pt; ">• Email Koordinator: </b>
+                        <p>{{email_koor}}</p>  
+                        <b style="font-size: 12pt; ">• Nomor Kacab: </b>
+                        <p>{{email_kacab}}</p>
+                    <ng-template pTemplate="footer">
+                        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ya, itulah data saya" StyleClass="p-button-text"></p-button>
+                    </ng-template>
+                </p-dialog>
+            </div><br>
+        </div>
+    </div>
+</div>
