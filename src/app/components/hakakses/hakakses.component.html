@@ -40,7 +40,7 @@
                     <p-checkbox value="Saya sebagai pemohon menyatakan bahwa semua data yang telah saya berikan di atas adalah benar dan bertanggungjawab penuh atas penggunaannya serta menyetujui ketentuan lain yang berlaku dalam penggunaan sistem informasi di PT CITO PUTRA UTAMA." id="ch"></p-checkbox>
                     <label for="ch">Saya sebagai pemohon menyatakan bahwa semua data yang telah saya berikan di atas adalah benar dan bertanggungjawab penuh atas penggunaannya serta menyetujui ketentuan lain yang berlaku dalam penggunaan sistem informasi di PT CITO PUTRA UTAMA.</label>
                 </div>
-                <p-button label="Submit2" (click)="showModalDialog()" (click)="submit(namapeg,nip,ktp,hp,koor,kacab,selectedDivisi,selectedCabang)"></p-button>
+                <p-button label="Submit" (click)="showModalDialog()" (click)="submit(namapeg,nip,ktp,hp,koor,kacab,selectedDivisi,selectedCabang)"></p-button>
                 <p-dialog header="Data Karyawan" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}">
                     <div></div>
                         <b style="font-size: 12pt; ">• Nama Karyawan: </b>
@@ -60,7 +60,7 @@
                         <b style="font-size: 12pt; ">• Nomor Kacab: </b>
                         <p>{{email_kacab}}</p>
                     <ng-template pTemplate="footer">
-                        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ya, itulah data saya" StyleClass="p-button-text"></p-button>
+                        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ya, benar" StyleClass="p-button-text"></p-button>
                     </ng-template>
                 </p-dialog>
             </div><br>
