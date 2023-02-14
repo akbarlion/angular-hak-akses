@@ -139,7 +139,6 @@ import { ConfigService } from './service/app.config.service';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
-import { AccessComponent } from './components/access/access.component';
 import { HakaksesComponent } from './components/hakakses/hakakses.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -274,7 +273,6 @@ import { RegisterComponent } from './register/register.component';
         LoginComponent,
         ErrorComponent,
         NotfoundComponent,
-        AccessComponent,
         HakaksesComponent,
         RegisterComponent,
     ],
