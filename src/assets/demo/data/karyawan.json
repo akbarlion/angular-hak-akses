@@ -1,0 +1,20 @@
+{
+	"data": [
+		{
+			"id": "0001",
+			"name": "Muhammad Akbar Choiri Lion",
+			"divisi": "IT",
+			"email":"muhammadakbarlion@gmail.com" ,
+			"cabang": "Kantor Pusat",
+			"telepon": "089516021833"
+		},
+		{
+			"id": "0002",
+			"name": "Davin Metoti",
+			"divisi": "IT",
+			"email": "davinmetotii@gmail.com",
+			"cabang": "Kantor Pusat",
+			"telepon": "082125396846"
+		}
+	]
+}

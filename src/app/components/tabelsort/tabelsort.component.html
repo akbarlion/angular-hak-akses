@@ -1,0 +1,22 @@
+<p-table [value]="karyawan" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="id" style="width: 20%;">ID<p-sortIcon field="id"></p-sortIcon></th>
+            <th pSortableColumn="name" style="width: 20%;">Nama<p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="divisi" style="width: 20%;">Divisi<p-sortIcon field="divisi"></p-sortIcon></th>
+            <th pSortableColumn="email" style="width: 20%;">Email<p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="cabang" style="width: 20%;">Cabang<p-sortIcon field="cabang"></p-sortIcon></th>
+            <th pSortableColumn="telepon" style="width: 20%;">No. HP<p-sortIcon field="telepon"></p-sortIcon></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-karyawan>
+        <tr>
+            <td>{{karyawan.id}}</td>
+            <td>{{karyawan.name}}</td>
+            <td>{{karyawan.divisi}}</td>
+            <td>{{karyawan.email}}</td>
+            <td>{{karyawan.cabang}}</td>
+            <td>{{karyawan.telepon}}</td>
+        </tr>
+    </ng-template>
+</p-table>

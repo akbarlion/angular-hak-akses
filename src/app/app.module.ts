@@ -141,6 +141,9 @@ import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { HakaksesComponent } from './components/hakakses/hakakses.component';
 import { RegisterComponent } from './register/register.component';
+import { TabelbiasaComponent } from './components/tabelbiasa/tabelbiasa.component';
+import { KaryawanService } from './service/karyawan.service';
+import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
 
 @NgModule({
     imports: [
@@ -231,6 +234,8 @@ import { RegisterComponent } from './register/register.component';
         VirtualScrollerModule,
         AppCodeModule,
         StyleClassModule,
+        HttpClientModule
+
     ],
     declarations: [
         AppComponent,
@@ -275,11 +280,13 @@ import { RegisterComponent } from './register/register.component';
         NotfoundComponent,
         HakaksesComponent,
         RegisterComponent,
+        TabelbiasaComponent,
+        TabelsortComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService
+        PhotoService, ProductService, MenuService, ConfigService, KaryawanService
     ],
     bootstrap: [AppComponent]
 })

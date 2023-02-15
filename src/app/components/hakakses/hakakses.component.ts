@@ -51,9 +51,16 @@ export class HakaksesComponent implements OnInit {
     code : null
   }
 
+
+  object={
+    nama:"daspin",
+    abses:"09"
+  }
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.object);
+    
   }
   dropdownDiv = [
 

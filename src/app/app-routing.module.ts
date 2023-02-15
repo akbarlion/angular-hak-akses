@@ -30,38 +30,24 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { HakaksesComponent } from './components/hakakses/hakakses.component';
 import { registerLocaleData } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
+import { TabelbiasaComponent } from './components/tabelbiasa/tabelbiasa.component';
+import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
+            {path: '', pathMatch:'full', redirectTo: 'pages/login'},
+            {path: 'login', component: LoginComponent},
+            {path: 'register', component: RegisterComponent},
             {
-                path: '', component: AppMainComponent,
+                path: 'beranda', component: AppMainComponent,
                 children: [
-                    {path: '', component: DashboardComponent},
                     {path: 'hakakses', component: HakaksesComponent},
                     {path: 'uikit/formlayout', component: FormLayoutComponent},
-                    {path: 'uikit/input', component: InputComponent},
-                    {path: 'uikit/floatlabel', component: FloatLabelComponent},
-                    {path: 'uikit/invalidstate', component: InvalidStateComponent},
-                    {path: 'uikit/button', component: ButtonComponent},
-                    {path: 'uikit/table', component: TableComponent},
-                    {path: 'uikit/list', component: ListComponent},
-                    {path: 'uikit/tree', component: TreeComponent},
-                    {path: 'uikit/panel', component: PanelsComponent},
-                    {path: 'uikit/overlay', component: OverlaysComponent},
-                    {path: 'uikit/media', component: MediaComponent},
                     {path: 'uikit/menu', loadChildren: () => import('./components/menus/menus.module').then(m => m.MenusModule)},
-                    {path: 'uikit/message', component: MessagesComponent},
-                    {path: 'uikit/misc', component: MiscComponent},
-                    {path: 'uikit/charts', component: ChartsComponent},
-                    {path: 'uikit/file', component: FileComponent},
-                    {path: 'pages/crud', component: CrudComponent},
-                    {path: 'pages/timeline', component: TimelineComponent},
-                    {path: 'pages/empty', component: EmptyComponent},
-                    {path: 'icons', component: IconsComponent},
-                    {path: 'blocks', component: BlocksComponent},
-                    {path: 'documentation', component: DocumentationComponent},
                     {path: 'login', component: LoginComponent},
-                    {path: 'register', component: RegisterComponent}
+                    {path: 'register', component: RegisterComponent},
+                    {path: 'tabelbiasa', component: TabelbiasaComponent},
+                    {path: 'tabelsort', component: TabelsortComponent}
                 ],
             },
             {path:'pages/landing', component: LandingComponent},
