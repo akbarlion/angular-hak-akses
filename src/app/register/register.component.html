@@ -7,25 +7,39 @@
             <div class="h-full w-full m-0 py-7 px-4" style="border-radius:53px; background: linear-gradient(180deg, var(--surface-50) 38.9%, var(--surface-0));">
                 <div class="text-center mb-5">
                     <img src="assets/layout/images/avatar.png" alt="Image" height="50" class="mb-3">
-                    <div class="text-900 text-3xl font-medium mb-3">Selamat Datang!</div>
-                    <span class="text-600 font-medium">Sign in to continue</span>
+                    <div class="text-900 text-3xl font-medium mb-3">Sugeng Rawuh!</div>
+                    <span class="text-600 font-medium">Sumonggo Panjenengan Daftar Mawon</span>
                 </div>
             
                 <div class="w-full md:w-10 mx-auto">
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Nama Depan</label>
+                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Jeneng Ngarep</label>
                     <input id="email1" type="text" pInputText class="w-full mb-3" style="padding:1rem;">
 
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Nama Belakang</label>
+                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Jeneng Mburi</label>
                     <input id="email1" type="text" pInputText class="w-full mb-3" style="padding:1rem;">
             
-                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
-                    <p-password id="password1" [(ngModel)]="password" placeholder="Password" [toggleMask]="true" styleClass="w-full mb-3"></p-password>
+                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Sandhi</label>
+                    <p-password id="password1" [(ngModel)]="password" [(ngModel)]="value1" placeholder="Password" [toggleMask]="true" styleClass="w-full mb-3">
+                        <ng-template pTemplate="header">
+                            <h6>Setel Sandhi Panjenengan</h6>
+                        </ng-template>
+                        <ng-template pTemplate="footer">
+                            <p-divider></p-divider>
+                            <p class="p-mt-2">Pepeling</p>
+                            <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5;">
+                            <li>Paling ora 8 karakter</li>
+                            <li>Paling ora huruf gede 1</li>
+                            <li>Paling ora huruf cilik 1</li>
+                            <li>Paling ora ono nomer</li>
+                            </ul>
+                        </ng-template>
+                    </p-password>
 
-                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Confirm Password</label>
-                    <p-password id="password1" [(ngModel)]="password" placeholder="Konfirmasi Password Anda" [toggleMask]="true" styleClass="w-full mb-3"></p-password>
-                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl" routerLink="/beranda/hakakses"></button>
+                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Konfirmasi Sandhi</label>
+                    <p-password id="password1" [(ngModel)]="password" placeholder="Konfirmasi Sandhi Panjenengan" [toggleMask]="true" styleClass="w-full mb-3"></p-password>
+                    <button pButton pRipple label="Daftar" class="w-full p-3 text-xl" routerLink="/beranda/hakakses"></button>
                     <div class="field col-12">
-                        <a class="font-medium underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" routerLink="/login">Cancel</a>
+                        <a class="font-medium underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" routerLink="/login">Mboten Siyos</a>
                         </div>
                 </div>
             </div>

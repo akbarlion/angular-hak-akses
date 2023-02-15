@@ -1,9 +1,13 @@
+import { ProviderAst } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-hakakses',
   templateUrl: './hakakses.component.html',
-  styleUrls: ['./hakakses.component.scss']
+  styleUrls: ['./hakakses.component.scss'],
+  providers : [MessageService]
 })
 export class HakaksesComponent implements OnInit {
 
@@ -56,12 +60,15 @@ export class HakaksesComponent implements OnInit {
     nama:"daspin",
     abses:"09"
   }
-  constructor() { }
+  constructor(private messageService : MessageService, private primeConfig : PrimeNGConfig) { }
 
   ngOnInit(): void {
     console.log(this.object);
     
   }
+  showSuccess() {
+    this.messageService.add({severity:'success', summary: 'Success', detail: 'Data Anda Kami Ambil YAHAHA'});
+}
   dropdownDiv = [
 
       { name: 'Marketing', code: 'Option 1' },

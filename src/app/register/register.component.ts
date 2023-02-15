@@ -28,6 +28,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   valCheck: string[] = ['remember'];
 
+  value1 : string;
+
   password: string;
   
   config: AppConfig;

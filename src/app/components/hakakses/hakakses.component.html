@@ -1,5 +1,5 @@
+<p-toast></p-toast>
 <div class="grid">
-
 	<div class="col-6">
 		<div class="card p-fluid">
 			<h5>Form Pengajuan Hak Akses</h5>
@@ -60,7 +60,7 @@
                         <b style="font-size: 12pt; ">• Nomor Kacab: </b>
                         <p>{{email_kacab}}</p>
                     <ng-template pTemplate="footer">
-                        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ya, benar" StyleClass="p-button-text"></p-button>
+                        <p-button icon="pi pi-check" (click)="displayModal=false" (click)="showSuccess()" label="Ya, benar" StyleClass="p-button-text"></p-button>
                     </ng-template>
                 </p-dialog>
             </div><br>
