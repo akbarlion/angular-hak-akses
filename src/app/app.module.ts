@@ -136,14 +136,13 @@ import { PhotoService } from './service/photoservice';
 import { ProductService } from './service/productservice';
 import { MenuService } from './service/app.menu.service';
 import { ConfigService } from './service/app.config.service';
-import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { HakaksesComponent } from './components/hakakses/hakakses.component';
-import { RegisterComponent } from './register/register.component';
 import { TabelbiasaComponent } from './components/tabelbiasa/tabelbiasa.component';
 import { KaryawanService } from './service/karyawan.service';
 import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     imports: [
@@ -275,19 +274,20 @@ import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
         PersonalComponent,
         SeatComponent,
         LandingComponent,
-        LoginComponent,
         ErrorComponent,
         NotfoundComponent,
         HakaksesComponent,
-        RegisterComponent,
         TabelbiasaComponent,
-        TabelsortComponent
+        TabelsortComponent,
+        LoginComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, ConfigService, KaryawanService
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+
+
 })
 export class AppModule { }

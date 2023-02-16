@@ -24,34 +24,30 @@ import { InvalidStateComponent } from './components/invalidstate/invalidstate.co
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { IconsComponent } from './components/icons/icons.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { HakaksesComponent } from './components/hakakses/hakakses.component';
 import { registerLocaleData } from '@angular/common';
-import { RegisterComponent } from './register/register.component';
 import { TabelbiasaComponent } from './components/tabelbiasa/tabelbiasa.component';
 import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
-            {path: '', pathMatch:'full', redirectTo: 'pages/login'},
+            {path: '', redirectTo: 'login', pathMatch:'full'},
             {path: 'login', component: LoginComponent},
-            {path: 'register', component: RegisterComponent},
             {
-                path: 'beranda', component: AppMainComponent,
+                path: '', component: AppMainComponent,
                 children: [
+                    {path: 'beranda', component: DashboardComponent},
                     {path: 'hakakses', component: HakaksesComponent},
                     {path: 'uikit/formlayout', component: FormLayoutComponent},
                     {path: 'uikit/menu', loadChildren: () => import('./components/menus/menus.module').then(m => m.MenusModule)},
-                    {path: 'login', component: LoginComponent},
-                    {path: 'register', component: RegisterComponent},
                     {path: 'tabelbiasa', component: TabelbiasaComponent},
-                    {path: 'tabelsort', component: TabelsortComponent}
+                    {path: 'tabelsort', component: TabelsortComponent},
                 ],
             },
             {path:'pages/landing', component: LandingComponent},
-            {path:'pages/login', component: LoginComponent},
             {path:'pages/error', component: ErrorComponent},
             {path:'pages/notfound', component: NotfoundComponent},
             {path: '**', redirectTo: 'pages/notfound'},

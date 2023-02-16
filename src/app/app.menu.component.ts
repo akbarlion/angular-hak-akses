@@ -33,10 +33,11 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'UI Components',
                 items: [
-                    {label: 'Permohonan Hak Akses', icon: 'pi pi-fw pi-book', routerLink: ['/beranda/hakakses']},
-                    {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/beranda/uikit/formlayout']},
-                    {label: 'Tabel', icon: 'pi pi-fw pi-table', routerLink: ['/beranda/tabelbiasa']},
-                    {label: 'tabelsort', icon: 'pi pi-fw pi-discord', routerLink: ['/beranda/tabelsort']}
+                    {label: 'Permohonan Hak Akses', icon: 'pi pi-fw pi-book', routerLink: ['hakakses']},
+                    {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['uikit/formlayout']},
+                    {label: 'Tabel', icon: 'pi pi-fw pi-table', routerLink: ['tabelbiasa']},
+                    {label: 'tabelsort', icon: 'pi pi-fw pi-discord', routerLink: ['tabelsort']},
+                    // {label: 'user', icon: 'pi pi-fw pi-user', routerLink: ['user']}
                 ]
             },
            
