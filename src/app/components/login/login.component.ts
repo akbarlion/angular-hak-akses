@@ -1,7 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ConfigService } from '../../service/app.config.service';
-import { AppConfig } from '../../api/appconfig';
+import { ConfigService } from 'src/app/service/app.config.service';
+import { AppConfig } from 'src/app/api/appconfig';
 import { Subscription } from 'rxjs';
+import { DataserviceService } from 'src/app/service/dataservice.service';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,16 +29,22 @@ import { Subscription } from 'rxjs';
   `]
 })
 export class LoginComponent implements OnInit, OnDestroy {
+  username: string = '';
+  password: string = '';
+  errorMessage: string = '';
 
   valCheck: string[] = ['remember'];
-
-  password: string;
   
   config: AppConfig;
   
   subscription: Subscription;
 
-  constructor(public configService: ConfigService){ }
+  constructor(
+    public configService: ConfigService,
+    public dataService: DataserviceService,
+    private router: Router,
+    private messageService : MessageService
+    ){ }
 
   ngOnInit(): void {
     this.config = this.configService.config;
@@ -47,5 +57,19 @@ export class LoginComponent implements OnInit, OnDestroy {
     if(this.subscription){
       this.subscription.unsubscribe();
     }
+  };
+
+  onSubmit(): void{
+    if (this.username == '' || this.password == ''){
+      this.messageService.add({severity:'error', summary:'Error', detail:'Username dan password harus diisi'})
+      return;
+    }
+    this.dataService.login({this.username, this.password}).subscribe(data =>{
+      if(data.success){
+        this.router.navigate(['beranda']);
+      } else {
+        this.messageService.add({severity:'error', summary:'Error', detail:this.errorMessage})
+      }
+    })
   }
 }

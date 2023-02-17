@@ -126,6 +126,7 @@ import { ConfirmationComponent } from './components/menus/confirmation.component
 import { PersonalComponent } from './components/menus/personal.component';
 import { SeatComponent } from './components/menus/seat.component';
 import { LandingComponent } from './components/landing/landing.component';
+import { MessageService } from 'primeng/api';
 
 import { CountryService } from './service/countryservice';
 import { CustomerService } from './service/customerservice';
@@ -284,7 +285,7 @@ import { LoginComponent } from './components/login/login.component';
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, KaryawanService
+        PhotoService, ProductService, MenuService, ConfigService, KaryawanService, MessageService
     ],
     bootstrap: [AppComponent],
 
