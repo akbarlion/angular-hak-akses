@@ -17,24 +17,24 @@ export class DataserviceService {
     return this.http.post<any>(`${this.apiUrl}/login`, {username, password});
   };
 
-  register(data: any): Observable<any>{
-    return this.http.post<any>(`${this.apiUrl}/register`, data);
+  register(karyawan: any): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/register`, karyawan);
   };
 
 
-  public getLoginData(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/get-data`);
+  public getLoginkaryawan(): Observable<any>{
+    return this.http.get(`${this.apiUrl}/get-karyawan`);
   }  
 
-  public postLoginData(data:any): Observable<any>{
-    return this.http.post(`${this.apiUrl}/store-data`, data);
+  public postLoginkaryawan(karyawan:any): Observable<any>{
+    return this.http.post(`${this.apiUrl}/store-karyawan`, karyawan);
   }
 
-  public updateLoginData(data:any): Observable<any>{
-    return this.http.post(`${this.apiUrl}/update-data`,data);
+  public updateLoginkaryawan(karyawan:any): Observable<any>{
+    return this.http.post(`${this.apiUrl}/update-karyawan`,karyawan);
   }
 
-  public deleteLoginData(data:any): Observable<any>{
-    return this.http.post(`${this.apiUrl}/delete-data`, data);
+  public deleteLoginkaryawan(karyawan:any): Observable<any>{
+    return this.http.post(`${this.apiUrl}/delete-karyawan`, karyawan);
   }
   }
