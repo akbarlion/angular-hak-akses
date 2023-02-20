@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     public configService: ConfigService,
     public dataService: DataserviceService,
     private router: Router,
-    private messageService : MessageService
+    public messageService : MessageService
     ){ }
 
   ngOnInit(): void {
@@ -59,17 +59,23 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   };
 
-  onSubmit(): void{
-    if (this.username == '' || this.password == ''){
-      this.messageService.add({severity:'error', summary:'Error', detail:'Username dan password harus diisi'})
-      return;
-    }
-    this.dataService.login({this.username, this.password}).subscribe(data =>{
-      if(data.success){
-        this.router.navigate(['beranda']);
-      } else {
-        this.messageService.add({severity:'error', summary:'Error', detail:this.errorMessage})
+  register(){
+    this.router.navigate(['/register'])
+  }
+
+  login(){
+    this.dataService.login(this.username, this.password).subscribe((response)=>{
+      if(response.success){
+        this.router.navigate(['/beranda']);
       }
-    })
+    },
+    (error) =>{
+      this.messageService.add({
+        severity:"error",
+        summary: "Error",
+        detail: "Invalid Username dan Password"
+      })
+    }
+    );
   }
 }

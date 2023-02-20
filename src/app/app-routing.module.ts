@@ -31,11 +31,14 @@ import { registerLocaleData } from '@angular/common';
 import { TabelbiasaComponent } from './components/tabelbiasa/tabelbiasa.component';
 import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {path: '', redirectTo: 'login', pathMatch:'full'},
             {path: 'login', component: LoginComponent},
+            {path: 'register', component:RegisterComponent},
             {
                 path: '', component: AppMainComponent,
                 children: [

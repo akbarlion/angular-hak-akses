@@ -144,6 +144,7 @@ import { TabelbiasaComponent } from './components/tabelbiasa/tabelbiasa.componen
 import { KaryawanService } from './service/karyawan.service';
 import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
     imports: [
@@ -234,7 +235,9 @@ import { LoginComponent } from './components/login/login.component';
         VirtualScrollerModule,
         AppCodeModule,
         StyleClassModule,
-        HttpClientModule
+        HttpClientModule,
+        MessageModule,
+        PasswordModule
 
     ],
     declarations: [
@@ -281,11 +284,12 @@ import { LoginComponent } from './components/login/login.component';
         TabelbiasaComponent,
         TabelsortComponent,
         LoginComponent,
+        RegisterComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, KaryawanService, MessageService
+        PhotoService, ProductService, MenuService, ConfigService, KaryawanService, MessageService, 
     ],
     bootstrap: [AppComponent],
 

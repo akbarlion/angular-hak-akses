@@ -12,6 +12,15 @@ export class DataserviceService {
   constructor(
     private http: HttpClient
   ) { }
+  
+   login(username: string, password: string): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/login`, {username, password});
+  };
+
+  register(data: any): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/register`, data);
+  };
+
 
   public getLoginData(): Observable<any>{
     return this.http.get(`${this.apiUrl}/get-data`);
@@ -28,8 +37,4 @@ export class DataserviceService {
   public deleteLoginData(data:any): Observable<any>{
     return this.http.post(`${this.apiUrl}/delete-data`, data);
   }
-
-  public login(username: any, password: any): Observable<any>{
-    return this.http.post(`${this.apiUrl}/login`, {username, password})
   }
-}
