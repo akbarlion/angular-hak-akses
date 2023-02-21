@@ -51,6 +51,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription = this.configService.configUpdate$.subscribe(config => {
       this.config = config;
     });
+    localStorage.removeItem ('isLoggedIn')
+  }
+
+  public setLoginStatus(status:boolean){
+    localStorage.setItem('isLoggedIn', status.toString());
   }
 
   ngOnDestroy(): void {
@@ -66,7 +71,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(){
     this.dataService.login(this.username, this.password).subscribe((response)=>{
       if(response.success){
-        this.router.navigate(['/beranda']);
+        this.setLoginStatus(true);
+        this.router.navigate(['beranda']);
       }
     },
     (error) =>{

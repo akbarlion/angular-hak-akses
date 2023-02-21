@@ -27,7 +27,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items:[
-                    {label: 'Beranda', icon: 'pi pi-fw pi-home', routerLink: ['/beranda']}
+                    {label: 'Beranda', icon: 'pi pi-fw pi-home', routerLink: ['beranda']}
                 ]
             },
             {
@@ -37,7 +37,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['uikit/formlayout']},
                     {label: 'Tabel', icon: 'pi pi-fw pi-table', routerLink: ['tabelbiasa']},
                     {label: 'tabelsort', icon: 'pi pi-fw pi-discord', routerLink: ['tabelsort']},
-                    // {label: 'user', icon: 'pi pi-fw pi-user', routerLink: ['user']}
+                    {label: 'user', icon: 'pi pi-fw pi-user', routerLink: ['tabelakses']}
                 ]
             },
            

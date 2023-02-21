@@ -29,6 +29,7 @@ import { MessageService } from 'primeng/api';
 `]
 })
 export class RegisterComponent implements OnInit {
+  nama: any;
   username: any;
   password: any;
 
@@ -53,9 +54,15 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   register(){
+    if (!this.username || !this.password || !this.nama){
+      this.messageService.add({severity: "error", summary: "Error", detail: "Masukkan Username dan Password"});
+      return;
+    }
+
     const data = {
       password: this.password,
       username: this.username,
+      Nama: this.nama,
     }
   
     this.dataService.register(data).subscribe(

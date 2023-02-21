@@ -126,7 +126,7 @@ import { ConfirmationComponent } from './components/menus/confirmation.component
 import { PersonalComponent } from './components/menus/personal.component';
 import { SeatComponent } from './components/menus/seat.component';
 import { LandingComponent } from './components/landing/landing.component';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 import { CountryService } from './service/countryservice';
 import { CustomerService } from './service/customerservice';
@@ -145,6 +145,7 @@ import { KaryawanService } from './service/karyawan.service';
 import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TabelaksesComponent } from './components/tabelakses/tabelakses.component';
 
 @NgModule({
     imports: [
@@ -285,11 +286,12 @@ import { RegisterComponent } from './components/register/register.component';
         TabelsortComponent,
         LoginComponent,
         RegisterComponent,
+        TabelaksesComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService, KaryawanService, MessageService, 
+        PhotoService, ProductService, MenuService, ConfigService, KaryawanService, MessageService, ConfirmationService
     ],
     bootstrap: [AppComponent],
 

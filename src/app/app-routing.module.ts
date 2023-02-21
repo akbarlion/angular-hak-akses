@@ -32,6 +32,8 @@ import { TabelbiasaComponent } from './components/tabelbiasa/tabelbiasa.componen
 import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { BerandaGuard } from './guards/beranda.guard';
+import { TabelaksesComponent } from './components/tabelakses/tabelakses.component';
 
 @NgModule({
     imports: [
@@ -39,21 +41,22 @@ import { RegisterComponent } from './components/register/register.component';
             {path: '', redirectTo: 'login', pathMatch:'full'},
             {path: 'login', component: LoginComponent},
             {path: 'register', component:RegisterComponent},
+            // {path: '**', redirectTo: 'beranda'},
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: 'beranda', component: DashboardComponent},
+                    {path: 'beranda', component: DashboardComponent, canActivate: [BerandaGuard]},
                     {path: 'hakakses', component: HakaksesComponent},
                     {path: 'uikit/formlayout', component: FormLayoutComponent},
                     {path: 'uikit/menu', loadChildren: () => import('./components/menus/menus.module').then(m => m.MenusModule)},
                     {path: 'tabelbiasa', component: TabelbiasaComponent},
                     {path: 'tabelsort', component: TabelsortComponent},
+                    {path: 'tabelakses', component: TabelaksesComponent}
                 ],
             },
             {path:'pages/landing', component: LandingComponent},
             {path:'pages/error', component: ErrorComponent},
             {path:'pages/notfound', component: NotfoundComponent},
-            {path: '**', redirectTo: 'pages/notfound'},
         ], {scrollPositionRestoration: 'enabled', anchorScrolling:'enabled'})
     ],
     exports: [RouterModule]

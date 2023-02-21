@@ -7,8 +7,11 @@
                     <div class="text-900 text-3xl font-medium mb-3">Registrasi</div>
                 </div>
                 <div class="w-full md:w-10 mx-auto">
+                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Nama Lengkap</label>
+                    <input id="email1" type="text" [(ngModel)]="nama" placeholder="Nama Lengkap" pInputText class="w-full mb-3" style="padding:1rem;">
+
                     <label for="email1" class="block text-900 text-xl font-medium mb-2">Username</label>
-                    <input id="email1" type="text" [(ngModel)]="username" placeholder="Masukkan Username" pInputText class="w-full mb-3" style="padding:1rem;">
+                    <input id="email1" type="text" [(ngModel)]="username" placeholder="Masukkan Username yang Anda Inginkan" pInputText class="w-full mb-3" style="padding:1rem;">
             
             
                     <label for="password" class="block text-900 font-medium text-xl mb-2">Password</label>
