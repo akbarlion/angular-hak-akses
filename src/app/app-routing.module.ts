@@ -34,6 +34,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BerandaGuard } from './guards/beranda.guard';
 import { TabelaksesComponent } from './components/tabelakses/tabelakses.component';
+import { PemeriksaanComponent } from './components/pemeriksaan/pemeriksaan.component';
+import { HargaComponent } from './components/harga/harga.component';
+import { HugComponent } from './components/hug/hug.component';
 
 @NgModule({
     imports: [
@@ -51,7 +54,10 @@ import { TabelaksesComponent } from './components/tabelakses/tabelakses.componen
                     {path: 'uikit/menu', loadChildren: () => import('./components/menus/menus.module').then(m => m.MenusModule)},
                     {path: 'tabelbiasa', component: TabelbiasaComponent},
                     {path: 'tabelsort', component: TabelsortComponent},
-                    {path: 'tabelakses', component: TabelaksesComponent}
+                    {path: 'tabelakses', component: TabelaksesComponent},
+                    {path: 'pemeriksaan', component: PemeriksaanComponent},
+                    {path: 'harga', component: HargaComponent},
+                    {path: 'hug', component: HugComponent}
                 ],
             },
             {path:'pages/landing', component: LandingComponent},

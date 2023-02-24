@@ -20,6 +20,15 @@ export class DataserviceService {
   register(data: any): Observable<any>{
     return this.http.post<any>(`${this.apiUrl}/register`, data);
   };
+
+  delete(id: any): Observable<any>{
+    const url = (`${this.apiUrl}/delete/${id}`);
+    return this.http.post(url, {})
+  }
+
+  sofdel(data: number): Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/delete`, {data})
+  }
   
   Logindata(): Observable<any>{
     return this.http.get(`${this.apiUrl}/get-data`);

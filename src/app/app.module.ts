@@ -146,6 +146,9 @@ import { TabelsortComponent } from './components/tabelsort/tabelsort.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TabelaksesComponent } from './components/tabelakses/tabelakses.component';
+import { PemeriksaanComponent } from './components/pemeriksaan/pemeriksaan.component';
+import { HargaComponent } from './components/harga/harga.component';
+import { HugComponent } from './components/hug/hug.component';
 
 @NgModule({
     imports: [
@@ -287,6 +290,9 @@ import { TabelaksesComponent } from './components/tabelakses/tabelakses.componen
         LoginComponent,
         RegisterComponent,
         TabelaksesComponent,
+        PemeriksaanComponent,
+        HargaComponent,
+        HugComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

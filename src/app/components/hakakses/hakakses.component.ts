@@ -55,16 +55,9 @@ export class HakaksesComponent implements OnInit {
     code : null
   }
 
-
-  object={
-    nama:"daspin",
-    abses:"09"
-  }
   constructor(private messageService : MessageService, private primeConfig : PrimeNGConfig) { }
 
   ngOnInit(): void {
-    console.log(this.object);
-    
   }
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Success', detail: 'Data Anda Kami Ambil YAHAHA'});

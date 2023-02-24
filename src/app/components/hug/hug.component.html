@@ -1,0 +1,57 @@
+<p-toast></p-toast>
+<div class="col-12">
+<div class="grid">
+    <div class="col-6">
+        <div class="card p-fluid">
+            <h5>Tindakan</h5>
+            <p-dropdown [options]="dropdownTindakan" optionLabel="name" [(ngModel)]="selectedTindakan" placeholder="Pilih tindakan"></p-dropdown>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card p-fluid">
+        <p-table [value]="Pemeriksaan" [lazy]="true" (onLazyLoad)="loadCustomers($event)" [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
+    <ng-template pTemplate="header">
+        <tr>
+            <th></th>
+            <th>Pemeriksaan</th>
+            <th>Harga</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pemeriksaan [(ngModel)]="selectedPemeriksaan">
+        <tr>
+            <td>
+                <p-checkbox value="asd" id="ch"></p-checkbox>
+                <label for="ch">{{checked}}</label>
+            </td>
+            <td>{{pemeriksaan.pemeriksaan}}</td>
+            <td>{{pemeriksaan.harga}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+    </div>
+    </div>
+</div>
+    <div class="field">
+        <button pButton label="submit" [style]="{width:'10em'}" (click)="showDialog()"></button>
+        <p-dialog [(visible)]="displayModal" [modal]="true" [style]="{width:'50vw'}">
+            <!-- <p-pickList [source]="selectedTindakan" [target]="Pemeriksaan" sourceHeader="Available" targetHeader="Selected" dragdrop="true"
+            [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" filterBy="name"
+            sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name">
+                <ng-template let-pemeriksaan pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-list-detail">
+                            <h5 class="mb-2">{{pemeriksaan.pemeriksaan}}</h5>
+                            <i class="pi pi-tag product-category-icon"></i>
+                            <span class="product-category">{{pemeriksaan.pemeriksaan}}</span>
+                        </div>
+                        <div class="product-list-action">
+                            <h6 class="mb-2">${{pemeriksaan.harga}}</h6>
+                            <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{pemeriksaan.pemeriksaan}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-pickList> -->
+            <button pButton (click)="displayModal=false" label="Benar" ></button>
+        </p-dialog>
+    </div>
+</div>

@@ -37,7 +37,10 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['uikit/formlayout']},
                     {label: 'Tabel', icon: 'pi pi-fw pi-table', routerLink: ['tabelbiasa']},
                     {label: 'tabelsort', icon: 'pi pi-fw pi-discord', routerLink: ['tabelsort']},
-                    {label: 'user', icon: 'pi pi-fw pi-user', routerLink: ['tabelakses']}
+                    {label: 'user', icon: 'pi pi-fw pi-user', routerLink: ['tabelakses']},
+                    {label: 'pemeriksaan', icon: 'pi pi-fw pi-tag', routerLink: ['pemeriksaan']},
+                    {label: 'harga', icon: 'pi pi-fw pi-tags', routerLink: ['harga']},
+                    {label: 'hug', icon: 'pi pi-fw pi-apple', routerLink: ['hug']}
                 ]
             },
            

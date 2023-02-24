@@ -9,11 +9,14 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class TabelaksesComponent implements OnInit {
   akses:any;
+  selectid:any;
 
   constructor(private dataService: DataserviceService,private confirmDialog: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getAksesData();
+    console.log(this.akses);
+    
     
   }
 
@@ -23,14 +26,18 @@ export class TabelaksesComponent implements OnInit {
         console.log(error);
       });
   }
-  confirm(event: Event) {
+  confirm(event: Event, id: any) {
     this.confirmDialog.confirm({
         target: event.target,
         message: 'Are you sure that you want to proceed?',
         icon: 'pi pi-exclamation-triangle',
+
         accept: () => {
             //confirm action
-            this.messageService.add({severity: "success", summary: "Success", detail: "Sukses menghapus Hak Akses!"});
+            this.dataService.delete(id).subscribe(data=>{this.messageService.add({severity: "success", summary: "Success", detail: "Sukses menghapus Hak Akses!"});},
+            (error)=>{
+              this.messageService.add({severity:"error", summary: "Gagal", detail: "Gagal menghapus hak akses"})
+            }) 
         },
         reject: () => {
             //reject action

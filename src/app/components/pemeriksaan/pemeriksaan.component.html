@@ -1,0 +1,37 @@
+<p-toast></p-toast>
+<div class="flex">
+    <div class="col-12 md:col-6">
+        <div class="card p-fluid">
+            <div>
+                <h5>Paket Pemeriksaan</h5>
+                <div class="field">
+                    <label htmlFor="cabang1">Cabang</label>
+                    <p-dropdown [options]="dropdownCab" optionLabel="name" [(ngModel)]="selectedCabang" [(ngModel)]="cabang1" placeholder="Pilih Cabang"></p-dropdown>
+                </div>
+                <div class="field">
+                    <label htmlFor="tindakan1">Tindakan</label>
+                    <p-dropdown [options]="dropdownTindakan" optionLabel="name" [(ngModel)]="selectedTindakan" [(ngModel)]="tindakan1" placeholder="Pilih Tindakan" ></p-dropdown>
+                </div>
+                <div class="field">
+                    <label htmlFor="pemeriksaan1">Pemeriksaan</label>
+                    <input pInputText id="pemeriksaan" type="text" [(ngModel)]="pemeriksaan" [(ngModel)]="pemeriksaan1" />
+                </div>
+                <div class="field">
+                    
+                <p-button label="Cek" (click)="submit(selectedCabang,selectedTindakan,pemeriksaan)"></p-button>
+                </div>
+                <p-button  label="Tambah Harga" (click)="cek()" [style]="{width:'10em'}"></p-button>
+                <p-dialog header="Set Harga Pemeriksaan" [(visible)]="displayModal" [modal]="true" [style]="{width:'50vw'}" >
+                <div class="field">
+                <p-dropdown placeholder="Pilih Cabang" [options]="dropdownCab" optionLabel="name"></p-dropdown>
+                </div>
+                <div class="field">
+                <p-dropdown placeholder="Pilih Tindakan" [options]="dropdownTindakan" optionLabel="name"></p-dropdown>
+                </div>
+                <div class="field">
+                    <p-dropdown placeholder="Nama Pemeriksaan" type="text"></p-dropdown>
+                </div>
+            </p-dialog>
+        </div>
+    </div>
+</div>

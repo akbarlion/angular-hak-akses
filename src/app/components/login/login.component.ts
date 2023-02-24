@@ -18,13 +18,13 @@ import { MessageService } from 'primeng/api';
     :host ::ng-deep .pi-eye{
       transform:scale(1.6);
       margin-right: 1rem;
-      color: var(--primary-color) !important;
+      color: rgba(0, 165, 135) !important;
     }
 
     :host ::ng-deep .pi-eye-slash{
       transform:scale(1.6);
       margin-right: 1rem;
-      color: var(--primary-color) !important;
+      color: rgba(0, 165, 135) !important;
     }
   `]
 })

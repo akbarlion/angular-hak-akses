@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "pemeriksaan": "PEMERIKSAAN DOKTER KANDUNGAN (POLIKLINIK)",
+            "harga": "200.000"
+        },
+        {
+            "id": 2,
+            "pemeriksaan": "PEMERIKSAAN DOKTER OBSGYN",
+            "harga": "250.000"
+        },
+        {
+            "id": 3,
+            "pemeriksaan": "AFF HEACTING / LEPAS JAHIT",
+            "harga": "Rp135.000,00"
+        },
+        {
+            "id": 4,
+            "pemeriksaan": "CROSS INCISI",
+            "harga": "Rp65.000,00"
+        }
+    ]
+}
