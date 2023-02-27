@@ -40,9 +40,16 @@ export class AppMenuComponent implements OnInit {
                     {label: 'user', icon: 'pi pi-fw pi-user', routerLink: ['tabelakses']},
                     {label: 'pemeriksaan', icon: 'pi pi-fw pi-tag', routerLink: ['pemeriksaan']},
                     {label: 'harga', icon: 'pi pi-fw pi-tags', routerLink: ['harga']},
-                    {label: 'hug', icon: 'pi pi-fw pi-apple', routerLink: ['hug']}
+                    {label: 'hug', icon: 'pi pi-fw pi-apple', routerLink: ['hug']},
+                    {label: 'fluffy', icon: 'pi pi-fw pi-android', routerLink: ['fluffy']}
                 ]
             },
+            {
+                label: 'Template',
+                items: [
+                    {label: 'CRUD', icon: 'pi pi-fw pi-users', routerLink: ['crud']}
+                ]
+            }
            
         ];
     }

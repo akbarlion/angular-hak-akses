@@ -149,6 +149,7 @@ import { TabelaksesComponent } from './components/tabelakses/tabelakses.componen
 import { PemeriksaanComponent } from './components/pemeriksaan/pemeriksaan.component';
 import { HargaComponent } from './components/harga/harga.component';
 import { HugComponent } from './components/hug/hug.component';
+import { FluffyComponent } from './components/fluffy/fluffy.component';
 
 @NgModule({
     imports: [
@@ -293,6 +294,7 @@ import { HugComponent } from './components/hug/hug.component';
         PemeriksaanComponent,
         HargaComponent,
         HugComponent,
+        FluffyComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

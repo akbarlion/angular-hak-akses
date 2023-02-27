@@ -36,19 +36,19 @@ export class CrudComponent implements OnInit {
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
 
-        this.cols = [
-            {field: 'name', header: 'Name'},
-            {field: 'price', header: 'Price'},
-            {field: 'category', header: 'Category'},
-            {field: 'rating', header: 'Reviews'},
-            {field: 'inventoryStatus', header: 'Status'}
-        ];
+        // this.cols = [
+        //     {field: 'name', header: 'Name'},
+        //     {field: 'price', header: 'Price'},
+        //     {field: 'category', header: 'Category'},
+        //     {field: 'rating', header: 'Reviews'},
+        //     {field: 'inventoryStatus', header: 'Status'}
+        // ];
 
-        this.statuses = [
-            {label: 'INSTOCK', value: 'instock'},
-            {label: 'LOWSTOCK', value: 'lowstock'},
-            {label: 'OUTOFSTOCK', value: 'outofstock'}
-        ];
+        // this.statuses = [
+        //     {label: 'INSTOCK', value: 'instock'},
+        //     {label: 'LOWSTOCK', value: 'lowstock'},
+        //     {label: 'OUTOFSTOCK', value: 'outofstock'}
+        // ];
     }
 
     openNew() {
@@ -96,15 +96,15 @@ export class CrudComponent implements OnInit {
         if (this.product.name.trim()) {
             if (this.product.id) {
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
+                // this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value: this.product.inventoryStatus;
                 this.products[this.findIndexById(this.product.id)] = this.product;
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
             } else {
                 this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
+                // this.product.code = this.createId();
+                // this.product.image = 'product-placeholder.svg';
                 // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
+                // this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
                 this.products.push(this.product);
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
             }

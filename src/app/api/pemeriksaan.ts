@@ -1,5 +1,5 @@
 export interface Pemeriksaan {
-    id?: number;
+    id?: string;
     pemeriksaan?: string;
     harga?: number;
 }

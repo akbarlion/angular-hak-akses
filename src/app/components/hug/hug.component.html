@@ -34,23 +34,19 @@
     <div class="field">
         <button pButton label="submit" [style]="{width:'10em'}" (click)="showDialog()"></button>
         <p-dialog [(visible)]="displayModal" [modal]="true" [style]="{width:'50vw'}">
-            <!-- <p-pickList [source]="selectedTindakan" [target]="Pemeriksaan" sourceHeader="Available" targetHeader="Selected" dragdrop="true"
-            [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" filterBy="name"
-            sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name">
-                <ng-template let-pemeriksaan pTemplate="item">
-                    <div class="product-item">
-                        <div class="product-list-detail">
-                            <h5 class="mb-2">{{pemeriksaan.pemeriksaan}}</h5>
-                            <i class="pi pi-tag product-category-icon"></i>
-                            <span class="product-category">{{pemeriksaan.pemeriksaan}}</span>
-                        </div>
-                        <div class="product-list-action">
-                            <h6 class="mb-2">${{pemeriksaan.harga}}</h6>
-                            <span [class]="'product-badge status-' + product.inventoryStatus.toLowerCase()">{{pemeriksaan.pemeriksaan}}</span>
-                        </div>
-                    </div>
+            <p-table [value]="Pemeriksaan" [tableStyle]="{'min-width': '45rem'}">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="text-align: center;">Tindakan</th>
+                        <th style="text-align: center;">Harga</th>
+                    </tr>
                 </ng-template>
-            </p-pickList> -->
+                <ng-template pTemplate="body" let-pemeriksaan>
+                    <tr>
+                        <td>{{pemeriksaan.selectedPemeriksaan}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
             <button pButton (click)="displayModal=false" label="Benar" ></button>
         </p-dialog>
     </div>

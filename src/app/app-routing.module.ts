@@ -37,6 +37,7 @@ import { TabelaksesComponent } from './components/tabelakses/tabelakses.componen
 import { PemeriksaanComponent } from './components/pemeriksaan/pemeriksaan.component';
 import { HargaComponent } from './components/harga/harga.component';
 import { HugComponent } from './components/hug/hug.component';
+import { FluffyComponent } from './components/fluffy/fluffy.component';
 
 @NgModule({
     imports: [
@@ -57,7 +58,9 @@ import { HugComponent } from './components/hug/hug.component';
                     {path: 'tabelakses', component: TabelaksesComponent},
                     {path: 'pemeriksaan', component: PemeriksaanComponent},
                     {path: 'harga', component: HargaComponent},
-                    {path: 'hug', component: HugComponent}
+                    {path: 'hug', component: HugComponent},
+                    {path: 'fluffy', component:FluffyComponent},
+                    {path: 'crud', component: CrudComponent},
                 ],
             },
             {path:'pages/landing', component: LandingComponent},
