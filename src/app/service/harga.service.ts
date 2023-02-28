@@ -6,13 +6,6 @@ import { Pemeriksaan } from '../api/pemeriksaan';
   providedIn: 'root'
 })
 export class HargaService {
-  
-  PemeriksaanNama: string[] = [
-    "PEMERIKSAAN DOKTER KANDUNGAN (POLIKLINIK)",
-    "PEMERIKSAAN DOKTER OBSGYN",
-    "AFF HEACTING / LEPAS JAHIT",
-    "CROSS INCISI"
-  ]
 
   constructor(private http: HttpClient) { }
 

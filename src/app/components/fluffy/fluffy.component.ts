@@ -3,13 +3,16 @@ import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { HargaService } from 'src/app/service/harga.service';
 import { Pemeriksaan } from 'src/app/api/pemeriksaan';
+import { Router } from '@angular/router';
 import { TabView } from 'primeng/tabview';
+import { Product } from '../../api/product';
+import { ProductService } from '../../service/productservice';
 
 
 @Component({
   selector: 'app-fluffy',
   templateUrl: './fluffy.component.html',
-  styleUrls: ['./fluffy.component.scss'],
+  styleUrls: ['../../../assets/demo/badges.scss'],
   styles: [`
   :host ::ng-deep .p-dialog .product-image {
       width: 150px;
@@ -19,191 +22,219 @@ import { TabView } from 'primeng/tabview';
 `]
 })
 export class FluffyComponent implements OnInit {
-  hargaDialog : boolean;
+    periksaDialog: boolean;
 
-  Pemeriksaan: Pemeriksaan[];
+    mappingDialog: boolean = false;
 
-  pemeriksaan: Pemeriksaan;
+    deletePeriksaDialog: boolean = false;
 
-  selectedPemeriksaan: Pemeriksaan[];
+    deletePemeriksaanDialog: boolean = false;
 
-  submitted: boolean;
+    Pemeriksaan: Pemeriksaan[];
 
-  selectedTindakan= {
-    name: null,
-    code: null
-  };
+    selectedTindakan: any;
 
-  tind= {
-    name: null,
-    code: null
-  }
+    periksa = {
+      id: null,
+      pemeriksaan: null,
+      harga: null
+    };
 
-  Tindakan: any;
+    selectedperiksa: any[] = [];
 
-  displayModal : boolean;
+    submitted: boolean;
 
-  constructor(
-    private hargaService: HargaService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
-  ) { }
+    cols: any[];
 
-  ngOnInit(): void {
-    this.hargaService.getPemeriksaan().then(data => this.Pemeriksaan = data);
-  }
+    statuses: any[];
 
-  openNew(){
-    this.pemeriksaan = {};
-    this.submitted = false;
-    this.hargaDialog = true;
-  }
+    rowsPerPageOptions = [5, 10, 20];
 
-  deleteSelectedPemeriksaan(){
-    this.confirmationService.confirm({
-      message: 'Apakah Anda yakin ingin menghapus harga ini?',
-      header: 'Konfirmasi Penghapusan',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.Pemeriksaan = this.Pemeriksaan.filter(val => !this.selectedPemeriksaan.includes(val));
-        this.selectedPemeriksaan = null;
-        this.messageService.add({severity: 'success', summary: 'Sukses', detail: 'Sukses menghapus', life: 3000});
-      }
-    });
-  }
+    constructor(private hargaService: HargaService, private messageService: MessageService,
+                private confirmationService: ConfirmationService, private route: Router) {}
 
-  editPemeriksaan(pemeriksaan: Pemeriksaan){
-    this.pemeriksaan = {...pemeriksaan};
-    this.hargaDialog = true;
-  }
+    ngOnInit() {
+        this.hargaService.getPemeriksaan().then(data => this.Pemeriksaan = data);
 
-  deletePemeriksaan(pemeriksaan: Pemeriksaan){
-    this.confirmationService.confirm({
-      message: 'Apakah Anda yakin ingin menghapus ini?' + pemeriksaan.pemeriksaan + '?',
-      header: 'Konfirmasi',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.Pemeriksaan = this.Pemeriksaan.filter(val=> val.id !== pemeriksaan.id);
-        this.pemeriksaan = {};
-        this.messageService.add({severity: 'success', summary: 'Sukses!', detail: 'Sukses menghapus pemeriksaan', life: 3000});
-      }
-    });
-  }
+        this.cols = [
+            {field: 'id', header: 'id'},
+            {field: 'pemeriksaan', header: 'pemeriksaan'},
+            {field: 'harga', header: 'harga'}
+        ];
 
-  hideDialog(){
-    this.hargaDialog = false;
-    this.submitted = false;
-  }
+        // this.statuses = [
+        //     {label: 'INSTOCK', value: 'instock'},
+        //     {label: 'LOWSTOCK', value: 'lowstock'},
+        //     {label: 'OUTOFSTOCK', value: 'outofstock'}
+        // ];
+    }
 
-  savePemeriksaan() {
-    this.submitted = true;
+    openNew() {
+        // this.periksa.id = this.createId() ;
+        this.submitted = false;
+        this.periksaDialog = true;
+    }
 
-        if (this.pemeriksaan.pemeriksaan.trim()) {
-            if (this.pemeriksaan.id) {
-                this.Pemeriksaan[this.findIndexById(this.pemeriksaan.id)] = this.pemeriksaan;                
-                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
+    deleteSelectedProducts() {
+        this.deletePemeriksaanDialog = true;
+    }
+
+    editProduct(periksa: Pemeriksaan) {
+        // this.periksa = {...periksa};
+        this.periksaDialog = true;
+    }
+
+    deleteProduct(periksa: Pemeriksaan) {
+        this.deletePeriksaDialog = true;
+        // this.periksa = {...periksa};
+    }
+
+    confirmDeleteSelected(){
+        this.deletePemeriksaanDialog = false;
+        this.Pemeriksaan = this.Pemeriksaan.filter(val => !this.selectedperiksa.includes(val));
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000});
+        this.selectedperiksa = null;
+    }
+
+    confirmDelete(){
+        this.deletePeriksaDialog = false;
+        this.Pemeriksaan = this.Pemeriksaan.filter(val => val.id !== this.periksa.id);
+        this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000});
+        // this.periksa = {};
+    }
+
+    hideDialog() {
+        this.periksaDialog = false;
+        this.submitted = false;
+    }
+
+    saveProduct() {
+        this.submitted = true;
+
+        if (this.periksa.pemeriksaan.trim()) {
+            if (this.periksa.id) {
+                // @ts-ignore
+                 this.periksa.pemeriksaan = this.periksa.pemeriksaan.value ? this.periksa.pemeriksaan.value: this.periksa.pemeriksaan;
+                this.Pemeriksaan[this.findIndexById(this.periksa.id)] = this.periksa;
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000});
             } else {
-                this.pemeriksaan.id = this.createId();
-                // this.pemeriksaan.image = 'pemeriksaan-placeholder.svg';
-                this.Pemeriksaan.push(this.pemeriksaan);
-                this.messageService.add({severity:'success', summary: 'Successful', detail: 'Product Created', life: 3000});
-            };
-            
+                this.periksa.id = this.createId();
+                this.Pemeriksaan.push(this.periksa);
+                this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000});
+            }
 
             this.Pemeriksaan = [...this.Pemeriksaan];
-            this.hargaDialog = false;
-            this.pemeriksaan = {};
-        }
-  }
-
-  findIndexById(id: string): number {
-    let index = -1;
-    for (let i = 0; i < this.Pemeriksaan.length; i++) {
-        if (this.Pemeriksaan[i].id === id) {
-            index = i;
-            break;
+            this.periksaDialog = false;
+            // this.periksa = {};
+            console.log(this.periksa)
         }
     }
 
-    return index;
+    findIndexById(id: string): number {
+        let index = -1;
+        for (let i = 0; i < this.Pemeriksaan.length; i++) {
+            if (this.Pemeriksaan[i].id === id) {
+                index = i;
+                break;
+            }
+        }
+
+        return index;
+    }
+
+    createId(): string {
+        let id = '';
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < 5; i++) {
+            id += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return id;
+    }
+
+    onSubmit(tind,per){
+      this.selectedTindakan = tind,
+      this.selectedperiksa = per,
+      this.mappingDialog= false
+
+      // this.route.navigate()
+
+      console.log(this.selectedperiksa);
+      
+    }
+
+    mapping(tarif: any): void{
+      this.mappingDialog= true;
+
+      if(!this.selectedperiksa.includes(tarif)){
+        this.selectedperiksa.push();
+      }
+      console.log('daftar tarif: ', this.selectedperiksa)
+    }
+    dropdownTindakan = [
+      { name: 'Pemeriksaan Kebidanan dan Kandungan'},
+      { name: 'Pemeriksaan Bedah'},
+      { name: 'Pemeriksaan Internis'},
+      { name: 'Pemeriksaan Mata'},
+      { name: 'Pemeriksaan THT'},
+      { name: 'Pemeriksaan Gigi dan Mulut'},
+      { name: 'Pemeriksaan Syaraf'},
+      { name: 'Hematologi'},
+      { name: 'Kimia Klinik'},
+      { name: 'Imunologi'},
+      { name: 'Serologi'},
+      { name: 'Hormon'},
+      { name: 'Narkoba'},
+      { name: 'Gram'},
+      { name: 'Sputum'},
+      { name: 'Sekret'},
+      { name: 'Kerokan Kulit'},
+      { name: 'Analisa Sperma'},
+      { name: 'Mikrobiologi'},
+      { name: 'Parasitologi'},
+      { name: 'Cairan Tubuh'},
+      { name: 'Urine'},
+      { name: 'Faeces'},
+      { name: 'Pemeriksaan Lain'},
+      { name: 'Analisa Batu'},
+      { name: 'Lain-lain'},
+      { name: 'PCR'},
+      { name: 'NGS'},
+      { name: 'CR'},
+      { name: 'Non CR'},
+      { name: 'ECG'},
+      { name: 'USG'},
+      { name: 'USG Mammae'},
+      { name: 'Audiometri'},
+      { name: 'Autospirometri'},
+      { name: 'Treadmill'},
+      { name: 'Pemeriksaan Fisik'},
+      { name: 'Anamnesa'},
+      { name: 'Kesimpulan'},
+      { name: 'Saran'},
+      { name: 'Papsmear'},
+      { name: 'Pajanan'},
+      { name: 'Morfologi Darah Tepi'},
+      { name: 'Pemeriksaan Jantung'},
+      { name: 'Pemeriksaan Paru'},
+      { name: 'Patologi Anatomi'},    
+      { name: 'CR ILO'},
+      { name: 'Biomolekul_Dev'},
+      { name: 'Poliklinik'},
+      { name: 'Poli Dokter Umum'},
+      { name: 'Poli Penyakit Dalam'},
+      { name: 'Poli Gigi dan Mulut'},
+      { name: 'Poli Spesialis Jantung'},
+      { name: 'Poli Spesialis THT'},
+      { name: 'Poli Spesialis Obgyn'},
+      { name: 'Poli Spesialis Anak'}
+    ];
 }
+  // submit(tin,pem){
+  //   this.selectedTindakan= tin;
+  //   this.selectedPemeriksaan= pem
+  // }
 
-createId(): string {
-  let id = '';
-  var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for ( var i = 0; i < 5; i++ ) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return id;
-}
+  // showModalDialog(){
+  //   this.displayModal = true;
+  // }
 
- 
-
-  dropdownTindakan = [
-    { name: 'Pemeriksaan Kebidanan dan Kandungan'},
-    { name: 'Pemeriksaan Bedah'},
-    { name: 'Pemeriksaan Internis'},
-    { name: 'Pemeriksaan Mata'},
-    { name: 'Pemeriksaan THT'},
-    { name: 'Pemeriksaan Gigi dan Mulut'},
-    { name: 'Pemeriksaan Syaraf'},
-    { name: 'Hematologi'},
-    { name: 'Kimia Klinik'},
-    { name: 'Imunologi'},
-    { name: 'Serologi'},
-    { name: 'Hormon'},
-    { name: 'Narkoba'},
-    { name: 'Gram'},
-    { name: 'Sputum'},
-    { name: 'Sekret'},
-    { name: 'Kerokan Kulit'},
-    { name: 'Analisa Sperma'},
-    { name: 'Mikrobiologi'},
-    { name: 'Parasitologi'},
-    { name: 'Cairan Tubuh'},
-    { name: 'Urine'},
-    { name: 'Faeces'},
-    { name: 'Pemeriksaan Lain'},
-    { name: 'Analisa Batu'},
-    { name: 'Lain-lain'},
-    { name: 'PCR'},
-    { name: 'NGS'},
-    { name: 'CR'},
-    { name: 'Non CR'},
-    { name: 'ECG'},
-    { name: 'USG'},
-    { name: 'USG Mammae'},
-    { name: 'Audiometri'},
-    { name: 'Autospirometri'},
-    { name: 'Treadmill'},
-    { name: 'Pemeriksaan Fisik'},
-    { name: 'Anamnesa'},
-    { name: 'Kesimpulan'},
-    { name: 'Saran'},
-    { name: 'Papsmear'},
-    { name: 'Pajanan'},
-    { name: 'Morfologi Darah Tepi'},
-    { name: 'Pemeriksaan Jantung'},
-    { name: 'Pemeriksaan Paru'},
-    { name: 'Patologi Anatomi'},    
-    { name: 'CR ILO'},
-    { name: 'Biomolekul_Dev'},
-    { name: 'Poliklinik'},
-    { name: 'Poli Dokter Umum'},
-    { name: 'Poli Penyakit Dalam'},
-    { name: 'Poli Gigi dan Mulut'},
-    { name: 'Poli Spesialis Jantung'},
-    { name: 'Poli Spesialis THT'},
-    { name: 'Poli Spesialis Obgyn'},
-    { name: 'Poli Spesialis Anak'}
-  ];
-
-  submit(tin,pem){
-    this.selectedTindakan= tin;
-    this.selectedPemeriksaan= pem
-  }
-
-  showModalDialog(){
-    this.displayModal = true;
-  }
-}
