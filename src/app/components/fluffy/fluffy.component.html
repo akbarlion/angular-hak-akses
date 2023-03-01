@@ -1,12 +1,12 @@
-<p-tabView>
-    <p-tabPanel header="Mapping Pemeriksaan">
+<p-tabView [(activeIndex)]="index">
+    <p-tabPanel header="Mapping Pemeriksaan" [disabled]="panel1">
 <div class="grid">
     <div class="col-12">
         <div class="card">
             <p-toast></p-toast>
             <div class="card p-fluid">
                 <h5>Tindakan</h5>
-            <p-dropdown [options]="dropdownTindakan" optionLabel="name" placeholder="Pilih Tindakan" [(ngModel)]="selectedTindakan" ></p-dropdown>
+            <p-dropdown [options]="dropdownTindakan" placeholder="Pilih Tindakan" [(ngModel)]="selectedTindakan" ></p-dropdown>
             </div>
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="left">
@@ -23,11 +23,7 @@
             <p-table #dt [value]="Pemeriksaan" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['pemeriksaan']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedperiksa" selectionMode="multiple" [rowHover]="true" dataKey="id">
                 <ng-template pTemplate="caption">
                     <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                        <h5 class="m-0">Mapping</h5>
-                        <span class="block mt-2 md:mt-0 p-input-icon-left">
-                            <i class="pi pi-search"></i>
-                            <p-input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Cari" ></p-input>
-                        </span>
+                        <h5 class="field">Mapping</h5>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
@@ -60,7 +56,7 @@
                     </tr>
                 </ng-template>
             </p-table>
-            <button pButton label="Submit" class="mt-2" (click)="mapping(periksa)"></button>
+            <button pButton label="Preview" class="mt-2" (click)="mapping(periksa)"></button>
         </div>
 
         <p-dialog [(visible)]="mappingDialog" [style]="{width: '350px'}" header="Mapping" [modal]="true" class="p-fluid">
@@ -73,7 +69,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-tarif>
                     <tr>
-                        <td>{{selectedTindakan.name}}</td>
+                        <td>{{selectedTindakan}}</td>
                         <td>{{tarif.pemeriksaan}}</td>
                     </tr>
                 </ng-template>
@@ -123,9 +119,66 @@
     </div>
 </div>
 </p-tabPanel>
-<p-tabPanel header="Mapping Cabang">
-    <div>
-
+<p-tabPanel header="Mapping Cabang" [disabled]="panel2">
+    <div class="grid">
+        <div class="col-12">
+            <div class="card p-fluid">
+                <h5>Cabang</h5>
+                <p-dropdown [options]="dropdownCab" [(ngModel)]="selectedCabang" placeholder="Pilih Cabang"></p-dropdown>
+            </div>
+            <div class="card p-fluid">
+                <p-pickList [source]="selectedperiksa" [target]="targetProducts" sourceHeader="Available Pemeriksaan" targetHeader="Target Pemeriksaan" dragdrop="true"
+                [responsive]="true" [sourceStyle]="{'height':'300px'}" [targetStyle]="{'height':'300px'}" filterBy="['pemeriksaan']"
+                sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name">
+                <ng-template let-tarif pTemplate="item">
+                    <div class="product-item">
+                        <div class="product-list-detail">
+                            <h5 class="mb-2">{{tarif.pemeriksaan}}</h5>
+                            <span class="product-category"></span>
+                        </div>
+                     <div class="product-list-action">
+                        <h6 class="mb-2">{{tarif.harga}}</h6>
+            </div>
+        </div>
+    </ng-template>
+</p-pickList>
+            </div>
+        </div>
+        <p-button icon="pi pi-chevron-left" (click)="reset()" class="mr-2"></p-button>
+        <p-button icon="pi pi-chevron-right" class="ml-2" (click)="submit2()" ></p-button>
+    </div>
+</p-tabPanel>
+<p-tabPanel header="Keseluruhan" [disabled]="panel3">
+    <div class="grid">
+        <div class="col-12">
+            <div class="card p-fluid col-6">
+                <p>Cabang</p>
+                <input pInputText [value]="selectedCabang" />
+                <!-- <p>Pemeriksaan</p>
+                <input pInputText [value]="selectedCabang" /> -->
+            </div>
+            <div class="card p-fluid col-6">
+                <p>Tindakan</p>
+                <input pInputText [value]="selectedTindakan" />
+            </div>
+            <div class="card">
+                <p-table [value]="targetProducts">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="text-align: center;">Pemeriksaan</th>
+                            <th style="text-align: center;">Harga</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-tarif>
+                        <tr>
+                            <td>{{tarif.pemeriksaan}}</td>
+                            <td>{{tarif.harga}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+        <p-button icon="pi pi-arrow-left" class="ml-2" (click)="reset()"></p-button>
     </div>
 </p-tabPanel>
 </p-tabView>

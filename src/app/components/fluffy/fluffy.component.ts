@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TabView } from 'primeng/tabview';
 import { Product } from '../../api/product';
 import { ProductService } from '../../service/productservice';
+import { PrimeNGConfig } from 'primeng/api';
 
 
 @Component({
@@ -22,6 +23,15 @@ import { ProductService } from '../../service/productservice';
 `]
 })
 export class FluffyComponent implements OnInit {
+
+    index: number = 0;
+
+    panel1 = false;
+
+    panel2= true;
+
+    panel3 = true; 
+
     periksaDialog: boolean;
 
     mappingDialog: boolean = false;
@@ -33,6 +43,8 @@ export class FluffyComponent implements OnInit {
     Pemeriksaan: Pemeriksaan[];
 
     selectedTindakan: any;
+
+    selectedCabang: any;
 
     periksa = {
       id: null,
@@ -50,11 +62,17 @@ export class FluffyComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
+    sourceProducts: any;
+
+    targetProducts: [];
+
     constructor(private hargaService: HargaService, private messageService: MessageService,
-                private confirmationService: ConfirmationService, private route: Router) {}
+                private confirmationService: ConfirmationService, private route: Router, private primengConfig: PrimeNGConfig) {}
 
     ngOnInit() {
         this.hargaService.getPemeriksaan().then(data => this.Pemeriksaan = data);
+
+        // this.isiTerpilih();
 
         this.cols = [
             {field: 'id', header: 'id'},
@@ -62,11 +80,22 @@ export class FluffyComponent implements OnInit {
             {field: 'harga', header: 'harga'}
         ];
 
+        this.hargaService.getPemeriksaan().then (products => this.sourceProducts = products);
+        this.targetProducts = [];
+        this.primengConfig.ripple = true;
+
         // this.statuses = [
         //     {label: 'INSTOCK', value: 'instock'},
         //     {label: 'LOWSTOCK', value: 'lowstock'},
         //     {label: 'OUTOFSTOCK', value: 'outofstock'}
         // ];
+    }
+
+    isiTerpilih(){
+        // this.hargaService.getPemeriksaan().then (products => this.sourceProducts = products);
+        localStorage.getItem('daftar')
+        this.targetProducts = [];
+        this.primengConfig.ripple = true;
     }
 
     openNew() {
@@ -155,11 +184,45 @@ export class FluffyComponent implements OnInit {
       this.selectedTindakan = tind,
       this.selectedperiksa = per,
       this.mappingDialog= false
-
+    //   this.selectedTindakan = {};
+    //   this.selectedperiksa = null
+        localStorage.setItem('daftar',JSON.stringify(this.selectedperiksa));
+        this.sourceProducts = this.selectedperiksa
+        this.index = 1;
+        this.panel2 = false
+        this.panel1 = true
+        this.panel3 = true
+        console.log(this.sourceProducts);
+        
+        // this.reset()
+        
       // this.route.navigate()
-
-      console.log(this.selectedperiksa);
       
+    }
+
+    nextpage(cabang: any): void{
+        // if(!this.targetProducts.includes(cabang)){
+        //     this.targetProducts.push()
+        // }
+
+        this.panel3 = false;
+        this.panel2 = true;
+        this.index = 2
+    }
+
+    reset (){
+        this.selectedTindakan = null;
+        this.selectedperiksa = null;
+        this.sourceProducts = null;
+        // this.targetProducts = null
+        this.selectedCabang = null
+        this.panel1= false
+        this.panel2 = true
+        this.panel3 = true
+        this.index = 0
+
+        console.log(this.selectedCabang);
+        
     }
 
     mapping(tarif: any): void{
@@ -169,64 +232,105 @@ export class FluffyComponent implements OnInit {
         this.selectedperiksa.push();
       }
       console.log('daftar tarif: ', this.selectedperiksa)
+      
+      console.log(this.selectedTindakan);
     }
+
+    submit2(){
+        this.selectedCabang
+        this.targetProducts
+        this.panel1=true;
+        this.panel2=true;
+        this.panel3=false
+        this.index = 2
+    }
+
+    dropdownCab = [
+         'Kantor Pusat', 
+         'Semarang-Indraprasta', 
+         'Semarang-Dr.Cipto' ,
+         'Semarang-Setiabudi' ,
+         'Pekalongan' ,
+         'Yogyakarta-Atmosukarto', 
+         'Yogyakarta-Bantul' ,
+         'Yogyakarta-Wates' ,
+         'Tegal' ,
+         'Solo' ,
+         'Jakarta Utara', 
+         'Jakarta Selatan', 
+         'Kudus' ,
+         'Merauke', 
+         'Magelang', 
+         'Bogor' ,
+         'Poliklinik', 
+         'Jayapura' ,
+         'Surabaya' ,
+         'Surabaya-Sungkono', 
+         'Purwokerto' ,
+         'Pemalang' ,
+         'Demak' ,
+         'Purbalingga', 
+         'Patologi Anatomi', 
+         'Balikpapan' 
+    ]
+
     dropdownTindakan = [
-      { name: 'Pemeriksaan Kebidanan dan Kandungan'},
-      { name: 'Pemeriksaan Bedah'},
-      { name: 'Pemeriksaan Internis'},
-      { name: 'Pemeriksaan Mata'},
-      { name: 'Pemeriksaan THT'},
-      { name: 'Pemeriksaan Gigi dan Mulut'},
-      { name: 'Pemeriksaan Syaraf'},
-      { name: 'Hematologi'},
-      { name: 'Kimia Klinik'},
-      { name: 'Imunologi'},
-      { name: 'Serologi'},
-      { name: 'Hormon'},
-      { name: 'Narkoba'},
-      { name: 'Gram'},
-      { name: 'Sputum'},
-      { name: 'Sekret'},
-      { name: 'Kerokan Kulit'},
-      { name: 'Analisa Sperma'},
-      { name: 'Mikrobiologi'},
-      { name: 'Parasitologi'},
-      { name: 'Cairan Tubuh'},
-      { name: 'Urine'},
-      { name: 'Faeces'},
-      { name: 'Pemeriksaan Lain'},
-      { name: 'Analisa Batu'},
-      { name: 'Lain-lain'},
-      { name: 'PCR'},
-      { name: 'NGS'},
-      { name: 'CR'},
-      { name: 'Non CR'},
-      { name: 'ECG'},
-      { name: 'USG'},
-      { name: 'USG Mammae'},
-      { name: 'Audiometri'},
-      { name: 'Autospirometri'},
-      { name: 'Treadmill'},
-      { name: 'Pemeriksaan Fisik'},
-      { name: 'Anamnesa'},
-      { name: 'Kesimpulan'},
-      { name: 'Saran'},
-      { name: 'Papsmear'},
-      { name: 'Pajanan'},
-      { name: 'Morfologi Darah Tepi'},
-      { name: 'Pemeriksaan Jantung'},
-      { name: 'Pemeriksaan Paru'},
-      { name: 'Patologi Anatomi'},    
-      { name: 'CR ILO'},
-      { name: 'Biomolekul_Dev'},
-      { name: 'Poliklinik'},
-      { name: 'Poli Dokter Umum'},
-      { name: 'Poli Penyakit Dalam'},
-      { name: 'Poli Gigi dan Mulut'},
-      { name: 'Poli Spesialis Jantung'},
-      { name: 'Poli Spesialis THT'},
-      { name: 'Poli Spesialis Obgyn'},
-      { name: 'Poli Spesialis Anak'}
+      'Pemeriksaan Kebidanan dan Kandungan',
+      'Pemeriksaan Bedah',
+      'Pemeriksaan Internis',
+      'Pemeriksaan Mata',
+      'Pemeriksaan THT',
+      'Pemeriksaan Gigi dan Mulut',
+      'Pemeriksaan Syaraf',
+      'Hematologi',
+      'Kimia Klinik',
+      'Imunologi',
+      'Serologi',
+      'Hormon',
+      'Narkoba',
+      'Gram',
+      'Sputum',
+      'Sekret',
+      'Kerokan Kulit',
+      'Analisa Sperma',
+      'Mikrobiologi',
+      'Parasitologi',
+      'Cairan Tubuh',
+      'Urine',
+      'Faeces',
+      'Pemeriksaan Lain',
+      'Analisa Batu',
+      'Lain-lain',
+      'PCR',
+      'NGS',
+      'CR',
+      'Non CR',
+      'ECG',
+      'USG',
+      'USG Mammae',
+      'Audiometri',
+      'Autospirometri',
+      'Treadmill',
+      'Pemeriksaan Fisik',
+      'Anamnesa',
+      'Kesimpulan',
+      'Saran',
+      'Papsmear',
+      'Pajanan',
+      'Morfologi Darah Tepi',
+      'Pemeriksaan Jantung',
+      'Pemeriksaan Paru',
+      'Patologi Anatomi',    
+      'CR ILO',
+      'Biomolekul_Dev',
+      'Poliklinik',
+      'Poli Dokter Umum',
+      'Poli Penyakit Dalam',
+      'Poli Gigi dan Mulut',
+      'Poli Spesialis Jantung',
+      'Poli Spesialis THT',
+      'Poli Spesialis Obgyn',
+      'Poli Spesialis Anak'
     ];
 }
   // submit(tin,pem){

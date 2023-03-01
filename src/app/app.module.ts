@@ -128,6 +128,7 @@ import { SeatComponent } from './components/menus/seat.component';
 import { LandingComponent } from './components/landing/landing.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
+
 import { CountryService } from './service/countryservice';
 import { CustomerService } from './service/customerservice';
 import { EventService } from './service/eventservice';
@@ -242,7 +243,8 @@ import { FluffyComponent } from './components/fluffy/fluffy.component';
         StyleClassModule,
         HttpClientModule,
         MessageModule,
-        PasswordModule
+        PasswordModule,
+        
 
     ],
     declarations: [
