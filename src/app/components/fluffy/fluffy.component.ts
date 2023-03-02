@@ -225,6 +225,10 @@ export class FluffyComponent implements OnInit {
         
     }
 
+    submitAll(){
+        
+    }
+
     mapping(tarif: any): void{
       this.mappingDialog= true;
 
