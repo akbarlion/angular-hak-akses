@@ -46,6 +46,8 @@ export class FluffyComponent implements OnInit {
 
     selectedCabang: any;
 
+    tindakanTerpilih: any;
+
     periksa = {
       id: null,
       pemeriksaan: null,
@@ -53,6 +55,8 @@ export class FluffyComponent implements OnInit {
     };
 
     selectedperiksa: any[] = [];
+
+    pilihPeriksa: []
 
     submitted: boolean;
 
@@ -83,6 +87,7 @@ export class FluffyComponent implements OnInit {
         this.hargaService.getPemeriksaan().then (products => this.sourceProducts = products);
         this.targetProducts = [];
         this.primengConfig.ripple = true;
+        localStorage.removeItem ('daftar')
 
         // this.statuses = [
         //     {label: 'INSTOCK', value: 'instock'},
@@ -180,14 +185,14 @@ export class FluffyComponent implements OnInit {
         return id;
     }
 
-    onSubmit(tind,per){
-      this.selectedTindakan = tind,
+    onSubmit(tinter,per){
+      this.tindakanTerpilih = tinter,
       this.selectedperiksa = per,
       this.mappingDialog= false
     //   this.selectedTindakan = {};
     //   this.selectedperiksa = null
-        localStorage.setItem('daftar',JSON.stringify(this.selectedperiksa));
-        this.sourceProducts = this.selectedperiksa
+        // localStorage.setItem('daftar',JSON.stringify(this.selectedperiksa));
+        this.sourceProducts = this.tindakanTerpilih
         this.index = 1;
         this.panel2 = false
         this.panel1 = true
@@ -208,10 +213,13 @@ export class FluffyComponent implements OnInit {
         this.panel3 = false;
         this.panel2 = true;
         this.index = 2
+        this.targetProducts= null;
+        this.selectedCabang = null
     }
 
+
     reset (){
-        this.selectedTindakan = null;
+        this.tindakanTerpilih = null;
         this.selectedperiksa = null;
         this.sourceProducts = null;
         // this.targetProducts = null
@@ -220,16 +228,30 @@ export class FluffyComponent implements OnInit {
         this.panel2 = true
         this.panel3 = true
         this.index = 0
+        
+        localStorage.removeItem ('daftar')
 
         console.log(this.selectedCabang);
         
     }
 
-    submitAll(){
-        
+    editMapping(){
+        this.selectedCabang;
+        this.targetProducts;
+        this.panel3= true;
+        this.panel1=true
+        this.panel2=true
+        this.index = 1
     }
 
-    mapping(tarif: any): void{
+    submitAll(){
+        if(this.tindakanTerpilih !== null){
+            this. submitted = true;
+            
+        }
+    }
+
+    mapping(tarif: any){
       this.mappingDialog= true;
 
       if(!this.selectedperiksa.includes(tarif)){
@@ -237,7 +259,7 @@ export class FluffyComponent implements OnInit {
       }
       console.log('daftar tarif: ', this.selectedperiksa)
       
-      console.log(this.selectedTindakan);
+      console.log(this.tindakanTerpilih);
     }
 
     submit2(){
@@ -247,6 +269,10 @@ export class FluffyComponent implements OnInit {
         this.panel2=true;
         this.panel3=false
         this.index = 2
+        
+        console.log(this.selectedCabang);
+        console.log(this.targetProducts);
+        console.log(this.selectedTindakan)
     }
 
     dropdownCab = [
